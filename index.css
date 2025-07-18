@@ -1,0 +1,29 @@
+header{
+    justify-content: center;
+    text-align: center;
+}
+
+.game-grid{
+    display: grid;
+    grid-template-rows: repeat(3,150px);
+    grid-template-columns: repeat(3,150px);
+    justify-content: center;
+}
+
+.game-cell{
+    background-color: lightgray;
+    text-align: center;
+    font-size: 100px;
+    align-content: center;
+    color: red;
+    cursor: default;
+}
+
+.empty{
+    color: transparent;
+    cursor: pointer;
+}
+
+.empty:hover{
+    color: rgba(255, 0, 0, 0.507);
+}
