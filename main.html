@@ -10,21 +10,35 @@
     <header>
         <h1>Tic Tac Toe</h1>
     </header>
-</body>
-    <dialog>
+
+    <dialog class="win">
         <p>O</p> Wins!
         <button>New Game</button>
     </dialog>
-    <div class="game-grid">
-        <div class="game-cell empty" id="0">X</div>
-        <div class="game-cell empty" id="1">X</div>
-        <div class="game-cell empty" id="2">X</div>
-        <div class="game-cell empty" id="3">X</div>
-        <div class="game-cell empty" id="4">X</div>
-        <div class="game-cell empty" id="5">X</div>
-        <div class="game-cell empty" id="6">X</div>
-        <div class="game-cell empty" id="7">X</div>
-        <div class="game-cell empty" id="8">X</div>
+    <div class="container">
+        <div class="setup">
+            <!-- <form class="player-names"> -->
+                <label for="p1">Player 1 name: </label><input type="text" id="p1" required>
+                <label for="p2">Player 2 name: </label><input type="text" id="p2" required>
+                <button id="submit">Start Game</button>
+            <!-- </form> -->
+        </div>
+        <main>
+            <p class="status">[Name]'s turn</p>
+            <div class="game-grid">
+                <div class="game-cell empty" id="0">X</div>
+                <div class="game-cell empty" id="1">X</div>
+                <div class="game-cell empty" id="2">X</div>
+                <div class="game-cell empty" id="3">X</div>
+                <div class="game-cell empty" id="4">X</div>
+                <div class="game-cell empty" id="5">X</div>
+                <div class="game-cell empty" id="6">X</div>
+                <div class="game-cell empty" id="7">X</div>
+                <div class="game-cell empty" id="8">X</div>
+            </div>
+            <button id="reset" close="false">Reset</button>
+        </main>
     </div>
+</body>
 </html>
 <script src="script.js"></script>
