@@ -106,9 +106,7 @@ const displayController = (function(game){
     const gameCells = document.querySelectorAll("div.game-cell");
     const status = document.querySelector("p.status")
     console.log(gameCells);
-    var activeVal = "X";
-
-
+    var disabled = false;
 
     const init = () => {
         bindEvents();
@@ -120,21 +118,7 @@ const displayController = (function(game){
 
         gameCells.forEach(gameCell =>{
             gameCell.addEventListener("click", () => {
-                // Get id and val
-                const id = gameCell.id;
-
-                // Check if valid box
-                if(!gameCell.classList.contains("empty")) return;
-
-                // Make move and update text
-                var moveResult = game.makePlay(id);
-                console.log(moveResult);
-                gameCell.classList.remove("empty");
-
-                if(!(moveResult == "none")) updateText(moveResult);
-                game.switchPlayer();
-                switchVal();
-                if(moveResult == "none") updateText(moveResult);
+                handleCellClick(gameCell)
             });
         });
     }
@@ -146,8 +130,10 @@ const displayController = (function(game){
             return;
         }
 
+        // Set up game
         game.setPlayers(player1In.value,player2In.value);
         updateText("none");
+        disabled = false;
         closeModal();
     }
 
@@ -157,6 +143,7 @@ const displayController = (function(game){
             cell.textContent = game.getCurrentSymbol();
             if(!cell.classList.contains("empty")) cell.classList.add("empty")
         })
+        disabled = false;
         updateText("none");
     }
 
@@ -185,6 +172,27 @@ const displayController = (function(game){
         }else{
             status.textContent = `It's a Tie!`
         }
+    }
+
+    const handleCellClick = (gameCell) =>{
+            // Get id and val
+            const id = gameCell.id;
+
+            // Check if valid box
+            if(!gameCell.classList.contains("empty") || disabled) return;
+
+            // Make move and update text
+            var moveResult = game.makePlay(id);
+            console.log(moveResult);
+            gameCell.classList.remove("empty");
+
+            if(!(moveResult == "none")) {
+                updateText(moveResult);
+                disabled = true;
+            };
+            game.switchPlayer();
+            switchVal();
+            if(moveResult == "none") updateText(moveResult);
     }
 
     return {init}
